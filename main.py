@@ -46,22 +46,37 @@ def main():
                 print(f"{i:<6}  {full_name:<20}  {faculty.department:<25}")
         # Add student
         elif choice == 3:
-            # Student.add_student(student_list)
             firstname = input("Enter first name: ")
             lastname = input("Enter last name: ")
-            classyear = input("Enter classyear: ")
+            classyear = input("Enter class year: ")
             major = input("Enter major: ")
-            advisor = input("Enter advisor: ")
-            student_list.append(Student(firstname, lastname, classyear, major, advisor))
-        
-        # Print student
+            advisor_firstname = input("Enter advisor's first name: ")
+            advisor_lastname = input("Enter advisor's last name: ")
+
+            # Create the student object with only the required parameters for initialization
+            student = Student(fname=firstname, lname=lastname)
+
+            # Use the provided methods to set other attributes
+            student.set_class(classyear)
+            student.set_major(major)
+
+            # Create a Faculty instance for the advisor and set it
+            advisor = Faculty(fname=advisor_firstname, lname=advisor_lastname, dpt="Unknown")  # Specify department if needed
+            student.set_advisor(advisor)
+
+            # Append to the list
+            student_list.append(student)
+
         elif choice == 4:
-            Student.print_student(student_list)
-            print("======================= STUDENT =======================")
-            print("Record  Name                  Department")
-            print("======  ====================  ==========================")
-            # for i, student in enumerate(student_list):
-            print(f"{i}       {Student.firstname} {Student.lastname}           {Student.department}")
+            print("===================================== STUDENTS ======================================")
+            print("Name                  Class      Major                      Advisor")
+            print("====================  =========  =========================  =========================")
+            for student in student_list:
+                # Assuming advisor is set as a Faculty object with first and last name attributes
+                sfull_name = f"{student.firstname} {student.lastname}"
+                advisor_name = f"{student.advisor.firstname} {student.advisor.lastname}" if student.advisor else "No advisor"
+                print(f"{sfull_name:<21} {student.classyear:<9} {student.major:<25} {advisor_name}")
+
         
         # Exit the program
         elif choice == 9:
