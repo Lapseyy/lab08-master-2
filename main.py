@@ -39,9 +39,11 @@ def main():
             print("======================= FACLUTY =======================")
             print("Record  Name                  Department")
             print("======  ====================  ==========================")
-            for i, Faculty in (faculties):
-                print(f"{i:<6}       {Faculty.fname:<19} {Faculty.lastname:<35}           {Faculty.department}")
-        
+            # for faculty in faculties:
+            #     print(f"{faculty.firstname:<19} {faculty.lastname:<15} {faculty.department:<25}")
+            for i, faculty in enumerate(faculties):
+                full_name = f"{faculty.firstname} {faculty.lastname}"
+                print(f"{i:<6}  {full_name:<20}  {faculty.department:<25}")
         # Add student
         elif choice == 3:
             # Student.add_student(student_list)
